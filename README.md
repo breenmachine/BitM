@@ -12,14 +12,14 @@ It can be used on a beaglebone/raspberry pi/... or on any laptop with two ethern
 * Two network interfaces - you can also use USB interfaces
 
 ### Software
-* Libs and tools: libpcap, bridge-utils, ebtables, iptables, arptables, macchanger
+* Libs and tools: libpcap, bridge-utils, ebtables, iptables, arptables, macchanger, autossh
 * Python2 with argparse, pcapy
 * Improved impacket from https://github.com/c0d3z3r0/impacket
 
 ## Installation
 
 ~~~sh
-aptitude install libpcap bridge-utils ebtables iptables arptables macchanger
+aptitude install libpcap bridge-utils ebtables iptables arptables macchanger autossh
 pip install virtualenv
 
 virtualenv venv
