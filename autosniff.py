@@ -652,7 +652,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--rev-password', default=None,
                         help="Specify a password for the reverse shell to "
                              "prevent unauthorized access.")
-    parser.add_argument('-s', '--rev-sleep', default=30,
+    parser.add_argument('-z', '--rev-sleep', default=30,
                         help="Specifiy a sleep time the reverse shell should "
                              "sleep between connect retries. This is useful "
                              "to prevent massive connection tries and thereby "
